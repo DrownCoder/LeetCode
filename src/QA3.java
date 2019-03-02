@@ -5,12 +5,17 @@
  * <p>
  * 每行的元素从左到右升序排列。
  * 每列的元素从上到下升序排列。
+ *
  */
 class QA3 {
     public static void main(String[] args) {
 
     }
 
+    /**
+     * 从右上角或者左下角开始遍历
+     * 可以一次判断一行
+     */
     public boolean searchMatrix(int[][] matrix, int target) {
         if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
             return false;

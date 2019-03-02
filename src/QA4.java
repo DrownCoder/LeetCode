@@ -27,29 +27,16 @@ class QA4 {
         System.out.println(list);
     }
 
+    /**
+     * 从最后开始，分别去num1的有效最后和num2的有效最后比较，取大的放入
+     */
     public void merge(int[] nums1, int m, int[] nums2, int n) {
-        if (nums1 == null || nums2 == null) {
-            throw new IllegalStateException();
+        int end = m-- + n-- - 1;
+        while (m >= 0 && n >= 0) {
+            nums1[end--] = nums1[m] > nums2[n] ? nums1[m--] : nums2[n--];
         }
-        List<Integer> list = new LinkedList<>();
-        for (int i = 0; i < m; i++) {
-            list.add(nums1[i]);
-        }
-        int index = 0;
-        for (int i = 0; i < list.size(); i++) {
-            if (index == n) {
-                return;
-            }
-            if (list.get(i) >= nums2[index]) {
-                list.add(i, nums2[index++]);
-                i--;
-            }
-        }
-        while (index < n) {
-            list.add(nums2[index++]);
-        }
-        for (int i = 0; i < list.size(); i++) {
-            nums1[i] = list.get(i);
+        while (n >= 0) {
+            nums1[end--] = nums2[n--];
         }
     }
 }

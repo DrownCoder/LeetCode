@@ -8,6 +8,9 @@ class QA2 {
 
     }
 
+    /**
+     * 不同的话一个换一个，相同的话保留，剩下的就是那个
+     */
     public int majorityElement(int[] nums) {
         if (nums == null || nums.length == 0) {
             throw new IllegalStateException();
