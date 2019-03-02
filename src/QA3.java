@@ -12,31 +12,23 @@ class QA3 {
     }
 
     public boolean searchMatrix(int[][] matrix, int target) {
-        if (matrix == null) {
+        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
             return false;
         }
-        int row = matrix.length;
-        if (row == 0) {
-            return false;
+        int column = matrix[0].length;
+        int startC = column - 1;
+        int startL = 0;
+        if (matrix[startL][startC] == target) {
+            return true;
         }
-        int column = matrix[0].length-1;
-        if (column == 0) {
-            return false;
-        }
-        int max = Math.max(row, column);
-        //遍历行
-        int columnCount = 0;
-        for (int i = 0; i < row; i++) {
-            if (matrix[i][columnCount] == target) {
+        while (startL < matrix.length && startC >= 0) {
+            if (matrix[startL][startC] == target) {
                 return true;
             }
-            if (matrix[i][columnCount] < target) {
-                if (matrix[i][columnCount + 1] == target) {
-                    return true;
-                }
-                if (matrix[i][columnCount + 1] < target) {
-                    columnCount++;
-                }
+            if (matrix[startL][startC] > target) {
+                startC--;
+            }else {
+                startL++;
             }
         }
         return false;
