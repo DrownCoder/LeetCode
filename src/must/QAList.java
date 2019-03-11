@@ -9,4 +9,42 @@ package must;
  * 合并多个单有序链表（假设都是递增的）
  */
 class QAList {
+
+    /**
+     * 反转链表
+     */
+    public ListNode reverseList(ListNode head) {
+        if (head == null) {
+            return null;
+        }
+        ListNode cur, pre = null, next;
+        cur = head;
+        while (cur != null) {
+            next = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = next;
+        }
+        return cur;
+    }
+
+    public ListNode reverseList2(ListNode head) {
+        if(head == null||head.next==null){
+            return head;
+        }
+        ListNode reNode=reverseList(head.next);
+        head.next.next=head;
+        head.next=null;
+        return reNode;
+    }
+
+
+    class ListNode{
+        int data;
+        ListNode next;
+
+        public ListNode(int data){
+            this.data = data;
+        }
+    }
 }
