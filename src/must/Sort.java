@@ -8,7 +8,8 @@ package must;
 class Sort {
     public static void main(String[] args) {
         int[] arr = {10, 9, 3, 2, 7, 9, 1, 8, 11};
-        quickSort(arr, 0, arr.length - 1);
+        //quickSort(arr, 0, arr.length - 1);
+        bubbleSort(arr);
         printArr(arr);
     }
 
@@ -48,5 +49,23 @@ class Sort {
         }
         arr[left] = index;
         return left;
+    }
+
+    //冒泡排序
+    public static void bubbleSort(int[] arr) {
+        if (arr == null || arr.length <= 1) {
+            return;
+        }
+        int length = arr.length;
+        int temp;
+        for (int i = 0; i < length - 1; i++) {
+            for (int j = 0; j < length - 1 - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
     }
 }
