@@ -9,7 +9,8 @@ class Sort {
     public static void main(String[] args) {
         int[] arr = {10, 9, 3, 2, 7, 9, 1, 8, 11};
         //quickSort(arr, 0, arr.length - 1);
-        bubbleSort(arr);
+        //bubbleSort(arr);
+        selectSort(arr);
         printArr(arr);
     }
 
@@ -65,6 +66,28 @@ class Sort {
                     arr[j] = arr[j + 1];
                     arr[j + 1] = temp;
                 }
+            }
+        }
+    }
+
+    //选择排序
+    public static void selectSort(int[] a) {
+        if (a == null || a.length == 0) {
+            return;
+        }
+        int min;
+        int minIndex = 0;
+        for (int i = 0; i < a.length; i++) {
+            min = a[i];
+            for (int j = i + 1; j < a.length; j++) {
+                if (a[j] < min) {
+                    min = a[j];
+                    minIndex = j;
+                }
+            }
+            if (min < a[i]) {
+                a[minIndex] = a[i];
+                a[i] = min;
             }
         }
     }
