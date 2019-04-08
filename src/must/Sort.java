@@ -11,7 +11,8 @@ class Sort {
         //quickSort(arr, 0, arr.length - 1);
         //bubbleSort(arr);
         //selectSort(arr);
-        insertSort(arr);
+        //insertSort(arr);
+        xierSort(arr);
         printArr(arr);
     }
 
@@ -137,4 +138,30 @@ class Sort {
             }
         }
     }
+
+    /**
+     * 希尔排序
+     * <p>
+     * 先将整个待排序的记录序列分割成为若干子序列分别进行直接插入排序，
+     * 待整个序列中的记录“基本有序”时，再对全体记录进行依次直接插入排序。
+     * https://www.cnblogs.com/chengxiao/p/6104371.html
+     */
+    public static void xierSort(int[] a) {
+        for (int gap = a.length / 2; gap > 0; gap /= 2) {
+            for (int i = gap; i < a.length; i++) {
+                int j = i;
+                while (j - gap >= 0 && a[j] < a[j - gap]) {
+                    swap(a, j, j - gap);
+                    j -= gap;
+                }
+            }
+        }
+    }
+
+    private static void swap(int[] arr, int a, int b) {
+        arr[a] = arr[a] + arr[b];
+        arr[b] = arr[a] - arr[b];
+        arr[a] = arr[a] - arr[b];
+    }
+
 }
