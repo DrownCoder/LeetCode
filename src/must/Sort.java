@@ -164,4 +164,24 @@ class Sort {
         arr[a] = arr[a] - arr[b];
     }
 
+
+    /**
+     * 归并排序
+     * 如果一个数组有n个数据，则可以把这个数组看作n个有序的子序列，每个子序列的长度为1，然后两两归并，
+     * 就能得到[n/2]个长度为2（或者1，落单的)的字序列，再不断地两两归并，直到得到一个长度为n的有序数组。
+     * https://www.jianshu.com/p/39dd1d9b491d
+     * https://www.cnblogs.com/chengxiao/p/6194356.html
+     */
+    public static void MergeSort(int arr[]) {
+        int[] temp = new int[arr.length];
+        mergeSort(arr, 0, arr.length - 1, temp);
+    }
+
+    private static void mergeSort(int[] arr, int left, int right, int[] temp) {
+        if (left < right) {
+            int mid = (left + right) / 2;
+            //sort(arr,)
+        }
+    }
+
 }
