@@ -6,10 +6,11 @@ import java.util.List;
 /**
  * Author : xuan.
  * Date : 2019-05-23.
- * Description :the description of this file
+ * Description :46，全排列
+ * https://blog.csdn.net/qq_16403141/article/details/80548282
  */
 class QA18 {
-    public List<List<Integer>> permute(int[] nums) {
+    public static List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> outPut = new LinkedList<>();
         ArrayList<Integer> nums_list = new ArrayList<>();
         for (int num : nums) {
@@ -20,7 +21,7 @@ class QA18 {
         return outPut;
     }
 
-    private void backTrack(int n,
+    private static void backTrack(int n,
                            ArrayList<Integer> nums,
                            List<List<Integer>> output,
                            int first) {
@@ -36,5 +37,12 @@ class QA18 {
             // backtrack
             Collections.swap(nums, first, i);
         }
+    }
+
+    public static void main(String[] args) {
+        int[] num = new int[]{
+                1,2,3
+        };
+        permute(num);
     }
 }
