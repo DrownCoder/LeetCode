@@ -2,6 +2,8 @@
  * Author : xuan.
  * Date : 2019-05-29.
  * Description :二分查找
+ *
+ * https://blog.csdn.net/lovesummerforever/article/details/24588989
  */
 class QA20 {
     //非递归
