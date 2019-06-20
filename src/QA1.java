@@ -8,6 +8,11 @@ class QA1 {
     }
 
     /**
+     * &（与）运算符 两个数同为1，结果才为1，否则为0
+     * |（或）运算符 两个数只要有一个为1，结果为1，否则为0
+     * ^（异或）运算符，两个数不同时为1，相同时为0
+     */
+    /**
      * 零和任何数异或都等于任何数, 一个数异或两次就等于0,
      * 又本题中除一个之外每个元素都出现两次 所以用循环异或所有数就等于 只出现一次的那个数 .
      */
@@ -15,7 +20,7 @@ class QA1 {
         if (nums == null || nums.length == 0) {
             throw new IllegalStateException();
         }
-        int result = 0;
+        int result = nums[0];
         for (int i = 1; i < nums.length; i++) {
             result ^= nums[i];
         }
