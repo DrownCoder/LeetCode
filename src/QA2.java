@@ -20,11 +20,33 @@ class QA2 {
         for (int i = 1; i < nums.length; i++) {
             if (result == nums[i]) {
                 count++;
-            }else{
+            } else {
                 count--;
                 if (count == 0) {
                     result = nums[i + 1];
                 }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * 找众数 169
+     */
+    public int findNum(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            throw new IllegalStateException();
+        }
+        int result = nums[0];
+        int count = 1;
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] != result) {
+                count--;
+                if (count == 0) {
+                    result = nums[i + 1];
+                }
+            } else {
+                count++;
             }
         }
         return result;
