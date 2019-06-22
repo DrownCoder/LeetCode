@@ -15,6 +15,19 @@ class QA23 {
     }
 
     public void flatten(TreeNode root) {
-
+        if (root == null) {
+            return;
+        }
+        //把左边拉直
+        flatten(root.left);
+        //把右边拉直
+        flatten(root.right);
+        TreeNode temp = root.right;
+        root.right = root.left;
+        root.left = null;
+        while (root.right != null) {
+            root = root.right;
+        }
+        root.right = temp;
     }
 }
