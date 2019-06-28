@@ -18,7 +18,7 @@ class QAList {
                 cur.next = l2;
                 l2 = l2.next;
                 cur = cur.next;
-            }else{
+            } else {
                 cur.next = l1;
                 l1 = l1.next;
                 cur = cur.next;
@@ -34,6 +34,7 @@ class QAList {
 
     /**
      * 反转链表
+     * 三个指针，保存前中后三个点
      */
     public ListNode reverseList(ListNode head) {
         if (head == null) {
@@ -47,17 +48,25 @@ class QAList {
             pre = cur;
             cur = next;
         }
-        return cur;
+        return pre;
     }
 
+    /**
+     * 第二遍
+     */
     public ListNode reverseList2(ListNode head) {
-        if (head == null || head.next == null) {
-            return head;
+        if (head == null) {
+            return null;
         }
-        ListNode reNode = reverseList(head.next);
-        head.next.next = head;
-        head.next = null;
-        return reNode;
+        ListNode cur, pre = null, next;
+        cur = head;
+        while (cur != null) {
+            next = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = next;
+        }
+        return pre;
     }
 
     /**
