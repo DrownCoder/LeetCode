@@ -19,4 +19,23 @@ class QA12 {
         }
         return stepNum(stair - 1) + stepNum(stair - 2);
     }
+
+    /**
+     * 斐波那契数列
+     */
+    public static int stepNum2(int stair) {
+        if (stair <= 0) {
+            return 0;
+        }
+        //一个台阶走一步
+        if (stair == 1) {
+            return 1;
+        }
+        //两个台阶两种走法
+        if (stair == 2) {
+            return 2;
+        }
+        //每次走一步，剩下的再递归+每次走两步剩下的再递归
+        return stepNum2(stair - 1) + stepNum2(stair - 2);
+    }
 }
