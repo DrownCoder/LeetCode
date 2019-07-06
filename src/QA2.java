@@ -51,4 +51,26 @@ class QA2 {
         }
         return result;
     }
+
+    public int findNum2(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            throw new IllegalStateException();
+        }
+        int result = nums[0];
+        int count = 1;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != result) {
+                count--;
+                if (count == 0) {
+                    if (i == nums.length - 1) {
+                        throw new IllegalStateException();
+                    }
+                    result = nums[i + 1];
+                }
+            }else{
+                count++;
+            }
+        }
+        return result;
+    }
 }

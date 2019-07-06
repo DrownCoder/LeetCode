@@ -26,4 +26,15 @@ class QA1 {
         }
         return result;
     }
+
+    private int logSingleOne2(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            throw new IllegalStateException();
+        }
+        int result = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            result = result ^ nums[i];
+        }
+        return result;
+    }
 }
