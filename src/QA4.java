@@ -39,4 +39,17 @@ class QA4 {
             nums1[end--] = nums2[n--];
         }
     }
+
+    public void merge2(int[] nums1, int m, int[] nums2, int n) {
+        if (nums1 == null || nums2 == null) {
+            return;
+        }
+        int end = m-- + n-- - 1;
+        while (m >= 0 && n >= 0) {
+            nums1[end--] = nums1[m] > nums2[n] ? nums1[m--] : nums2[n--];
+        }
+        while (n >= 0) {
+            nums1[end--] = nums2[n--];
+        }
+    }
 }
