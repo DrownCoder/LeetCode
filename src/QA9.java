@@ -1,7 +1,7 @@
 /**
  * Author : xuan.
  * Date : 2019-03-28.
- * Description :the description of this file
+ * Description :二叉树的最大深度
  */
 class QA9 {
 
@@ -26,5 +26,14 @@ class QA9 {
         } else {
             return deepRight + 1;
         }
+    }
+
+    public int maxDepth2(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int leftDepth = maxDepth2(root.left);
+        int rightDepth = maxDepth2(root.right);
+        return Math.max(leftDepth, rightDepth) + 1;
     }
 }

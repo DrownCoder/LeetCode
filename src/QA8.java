@@ -17,6 +17,15 @@ class QA8 {
         node.next = next.next;
     }
 
+    public void deleteNode2(ListNode node) {
+        ListNode next = node.next;
+        if (next == null) {
+            return;
+        }
+        node.val = next.val;
+        node.next = next.next;
+    }
+
     public class ListNode {
         int val;
         ListNode next;
