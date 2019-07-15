@@ -30,4 +30,23 @@ class QA11 {
         }
         return max;
     }
+
+    public static int maxSonSum2(int[] arr) {
+        if (arr == null || arr.length == 0) {
+            return 0;
+        }
+        int max = arr[0];
+        int curMax = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            if (curMax < 0) {
+                curMax = arr[i];
+            }else{
+                curMax += arr[i];
+            }
+            if (curMax > max) {
+                max = curMax;
+            }
+        }
+        return max;
+    }
 }

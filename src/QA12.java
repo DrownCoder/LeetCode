@@ -38,4 +38,17 @@ class QA12 {
         //每次走一步，剩下的再递归+每次走两步剩下的再递归
         return stepNum2(stair - 1) + stepNum2(stair - 2);
     }
+
+    public static int stepNum3(int stair) {
+        if (stair <= 0) {
+            return 0;
+        }
+        if (stair == 1) {
+            return 1;
+        }
+        if (stair == 2) {
+            return 2;
+        }
+        return stepNum3(stair - 1) + stepNum3(stair - 2);
+    }
 }
