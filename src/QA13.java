@@ -34,4 +34,21 @@ class QA13 {
         }
         return '#';
     }
+
+    public void insert(char ch) {
+        if (map.containsKey(ch)) {
+            map.put(ch, map.get(ch) + 1);
+        }else{
+            map.put(ch, 0);
+        }
+    }
+
+    public char returnFirstChar() {
+        for (Map.Entry<Character, Integer> entry : map.entrySet()) {
+            if (entry.getValue() == 0) {
+                return entry.getKey();
+            }
+        }
+        return '#';
+    }
 }

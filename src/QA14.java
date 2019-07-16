@@ -10,9 +10,10 @@
 class QA14 {
 
     public static void main(String[] args) {
-        int[] a = {1, 2, 3, 1, 2, 4, 5};
+        int[] a = {1,1, 2,2, 3, 4, 5};
 
-        removeDuplicates(a);
+        int i =removeDuplicates(a);
+        System.out.println(i);
     }
 
     public static int removeDuplicates(int[] nums) {
@@ -22,6 +23,22 @@ class QA14 {
         int i = 0;
         for (int j = 1; j < nums.length; j++) {
             if (nums[i] != nums[j]) {
+                i++;
+                nums[i] = nums[j];
+            }
+        }
+        return i + 1;
+    }
+
+    /**
+     * 注意是有序的数组
+     * @param nums
+     * @return
+     */
+    public static int removeDuplicates2(int[] nums) {
+        int i = 0;
+        for (int j = 1; j < nums.length; j++) {
+            if (nums[j] != nums[i]) {
                 i++;
                 nums[i] = nums[j];
             }
