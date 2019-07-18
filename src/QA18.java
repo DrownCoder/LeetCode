@@ -39,6 +39,24 @@ class QA18 {
         }
     }
 
+    public static List<List<Integer>> permute2(int[] nums) {
+        List<List<Integer>> outPut = new LinkedList<>();
+        ArrayList<Integer> nums_list = new ArrayList<>();
+        backTrack2(nums, nums_list, outPut, 0);
+        return outPut;
+    }
+
+    private static void backTrack2(int[] nums, List<Integer> nums_list, List<List<Integer>> outPut, int index) {
+        if (index >= nums.length) {
+            outPut.add(new ArrayList<>(nums_list));
+        }
+        for (int i = index; i < nums.length; i++) {
+            nums_list.add(nums[i]);
+            backTrack2(nums, nums_list, outPut, i + 1);
+            nums_list.remove(nums_list.size() - 1);
+        }
+    }
+
     public static void main(String[] args) {
         int[] num = new int[]{
                 1,2,3

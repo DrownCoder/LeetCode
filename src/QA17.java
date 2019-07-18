@@ -9,7 +9,7 @@
  */
 class QA17 {
     public static void main(String[] args) {
-
+        System.out.println(climbStair3(5));
     }
 
     public int climbStairs(int n) {
@@ -25,5 +25,39 @@ class QA17 {
             pointB = num;
         }
         return num;
+    }
+
+    /**
+     * 1
+     * 0+1 = 1
+     * 2
+     * 1+1 = 2
+     * 3
+     * 2+1 = 3
+     * 4
+     * 3+2 =5
+     * 5
+     * 5+3 = 8
+     */
+    public int climbStairs2(int n) {
+        if (n <= 2) {
+            return n;
+        }
+        int a = 1;
+        int b = 2;
+        int num = 0;
+        for (int i = 3; i <= n; i++) {
+            num = a + b;
+            a = b;
+            b = num;
+        }
+        return num;
+    }
+
+    public static int climbStair3(int n) {
+        if (n <= 2) {
+            return n;
+        }
+        return climbStair3(n - 1) + climbStair3(n - 2);
     }
 }
