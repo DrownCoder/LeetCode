@@ -22,9 +22,9 @@ class QA18 {
     }
 
     private static void backTrack(int n,
-                           ArrayList<Integer> nums,
-                           List<List<Integer>> output,
-                           int first) {
+                                  ArrayList<Integer> nums,
+                                  List<List<Integer>> output,
+                                  int first) {
         // if all integers are used up
         if (first == n)
             output.add(new ArrayList<>(nums));
@@ -42,25 +42,29 @@ class QA18 {
     public static List<List<Integer>> permute2(int[] nums) {
         List<List<Integer>> outPut = new LinkedList<>();
         ArrayList<Integer> nums_list = new ArrayList<>();
+        for (int num : nums) {
+            nums_list.add(num);
+        }
         backTrack2(nums, nums_list, outPut, 0);
         return outPut;
     }
 
-    private static void backTrack2(int[] nums, List<Integer> nums_list, List<List<Integer>> outPut, int index) {
+    private static void backTrack2(int[] nums, List<Integer> nums_list,
+                                   List<List<Integer>> outPut, int index) {
         if (index >= nums.length) {
             outPut.add(new ArrayList<>(nums_list));
         }
         for (int i = index; i < nums.length; i++) {
-            nums_list.add(nums[i]);
-            backTrack2(nums, nums_list, outPut, i + 1);
-            nums_list.remove(nums_list.size() - 1);
+            Collections.swap(nums_list, index, i);
+            backTrack2(nums, nums_list, outPut, index + 1);
+            Collections.swap(nums_list, index, i);
         }
     }
 
     public static void main(String[] args) {
         int[] num = new int[]{
-                1,2,3
+                1, 2, 3
         };
-        permute(num);
+        permute2(num);
     }
 }
