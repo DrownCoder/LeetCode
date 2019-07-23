@@ -26,6 +26,77 @@ class QA21 {
         }
     }
 
+    public static class Stack2<T> {
+        private Queue<T> queue1, queue2;
+
+        public Stack2(Queue<T> queue1, Queue<T> queue2) {
+            this.queue1 = queue1;
+            this.queue2 = queue2;
+        }
+
+        public void push(T t) {
+            queue1.push(t);
+        }
+
+        public T pop() {
+            if (queue1.isEmpty()) {
+                return null;
+            }
+            int size = queue1.size() - 1;
+            for (int i = 0; i < size; i++) {
+                queue2.push(queue1.pop());
+            }
+            T result = queue1.pop();
+            while (!queue2.isEmpty()) {
+                queue1.push(queue2.pop());
+            }
+            return result;
+        }
+
+        public int size() {
+            return queue1.size();
+        }
+
+        public boolean isEmpty() {
+            return queue1.isEmpty();
+        }
+    }
+
+    public static class Queue2<T> {
+        private Stack<T> stack1, stack2;
+
+        public Queue2(Stack<T> stack1, Stack<T> stack2) {
+            this.stack1 = stack1;
+            this.stack2 = stack2;
+        }
+
+        public void push(T t) {
+            if (stack1 != null) {
+                stack1.push(t);
+            }
+        }
+
+        public T pop() {
+            if (!stack2.isEmpty()) {
+                return stack2.pop();
+            } else {
+                while (!stack1.isEmpty()) {
+                    stack2.push(stack1.pop());
+                }
+            }
+            return stack2.pop();
+        }
+
+        public boolean isEmpty() {
+            return stack1.isEmpty() && stack2.isEmpty();
+        }
+
+        public int size() {
+            return stack1.size() + stack2.size();
+        }
+    }
+
+
     public static class Queue<T> {
         private Stack<T> stack1, stack2;
 
