@@ -46,4 +46,37 @@ class QA22 {
         }
         return result;
     }
+
+    /**
+     * 层序遍历
+     */
+    public List<Integer> largestValues2(TreeNode root) {
+        if (root == null) {
+            return new ArrayList<>();
+        }
+        List<Integer> result = new ArrayList<>();
+        //每一层的节点
+        Deque<TreeNode> level = new LinkedList<>();
+        level.push(root);
+        while (!level.isEmpty()) {
+            TreeNode top = level.peek();
+            int size = level.size();
+            int max = top.val;
+            while (size-- > 0) {
+                //遍历这一层
+                TreeNode node = level.removeFirst();
+                //找这一层最大的
+                max = Math.max(max, node.val);
+                //把下一层的节点放入
+                if (node.left != null) {
+                    level.push(node.left);
+                }
+                if (node.right != null) {
+                    level.push(node.right);
+                }
+            }
+            result.add(max);
+        }
+        return result;
+    }
 }
