@@ -30,4 +30,42 @@ class QA23 {
         }
         root.right = temp;
     }
+
+    /**
+     *     1
+     *    / \
+     *   2   5
+     *  / \   \
+     * 3   4   6
+     *
+     * 1
+     *  \
+     *   2
+     *    \
+     *     3
+     *      \
+     *       4
+     *        \
+     *         5
+     *          \
+     *           6
+     */
+    public void flatten2(TreeNode root) {
+        //左边拉直
+        flatten2(root.left);
+        //右边拉直
+        flatten2(root.right);
+        //暂时存储右边
+        TreeNode temp = root.right;
+        //把拉直后的左边放到右边
+        root.right = root.left;
+        //左边置null
+        root.left = null;
+        //找到右边的末尾
+        while (root.right != null) {
+            root = root.right;
+        }
+        //追加原来的右边
+        root.right = temp;
+    }
 }
