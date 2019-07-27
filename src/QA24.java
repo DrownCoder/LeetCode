@@ -7,9 +7,12 @@
 class QA24 {
     public static void main(String[] args) {
         int[] test = new int[]{
-                1, 0
+                0, 0, 1
         };
-        moveZeroes(test);
+        moveZeroes2(test);
+        for (int i : test) {
+            System.out.println(i);
+        }
     }
 
     public static void moveZeroes(int[] nums) {
@@ -45,6 +48,23 @@ class QA24 {
         int i = 0, j = 0;
         for (i = 0; i < nums.length; i++) {
             if (nums[i] != 0) {
+                nums[j++] = nums[i];
+            }
+        }
+        while (j < nums.length) {
+            nums[j++] = 0;
+        }
+    }
+
+    public static void moveZeroes3(int[] nums) {
+        if (nums == null || nums.length <= 1) {
+            return;
+        }
+        int i = 0;//遍历所有
+        int j = 0;//j之前的都不是0
+        for (; i < nums.length; i++) {
+            if (nums[i] != 0) {
+                //找不等于0的
                 nums[j++] = nums[i];
             }
         }
