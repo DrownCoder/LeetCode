@@ -43,7 +43,36 @@ class QA26 {
                 string[targetLength--] = '0';
                 string[targetLength--] = '2';
                 string[targetLength--] = '%';
-            }else{
+            } else {
+                string[targetLength--] = string[usedLength];
+            }
+            usedLength--;
+        }
+        return string;
+    }
+
+    public static char[] replaceBlank2(char[] string, int usedLength) {
+        if (string == null || string.length == 0) {
+            return string;
+        }
+        int emptyLength = 0;
+        for (char c : string) {
+            if (c == ' ') {
+                emptyLength++;
+            }
+        }
+        int targetLength = emptyLength * 2 + usedLength;
+        if (targetLength > string.length) {
+            throw new IllegalStateException();
+        }
+        usedLength--;
+        targetLength--;
+        while (usedLength > 0 && targetLength > 0) {
+            if (string[usedLength] == ' ') {
+                string[targetLength--] = '0';
+                string[targetLength--] = '2';
+                string[targetLength--] = '%';
+            } else {
                 string[targetLength--] = string[usedLength];
             }
             usedLength--;
