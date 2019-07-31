@@ -31,6 +31,17 @@ class QA27 {
         }
     }
 
+    public static void printListInverselyUsingIteration2(ListNode root) {
+        Stack<ListNode> stack = new Stack<>();
+        while (root != null) {
+            stack.push(root);
+            root = root.nxt;
+        }
+        while (!stack.isEmpty()) {
+            System.out.println(stack.pop().val);
+        }
+    }
+
     public static void main(String[] args) {
         ListNode root = new ListNode();
         root.val = 1;
