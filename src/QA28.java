@@ -59,4 +59,32 @@ class QA28 {
                 index + 1, midEnd);
         return node;
     }
+
+
+    private static BinaryTreeNode construct2(int[] preorder, int preStart, int preEnd,
+                                             int[] inorder, int midStart, int midEnd) {
+        //终止遍历
+        if (preStart > preEnd) {
+            return null;
+        }
+        //根节点的value,在前序遍历的头结点
+        int rootValue = preorder[preStart];
+        int rootIndex = midStart;
+        //在中序遍历中找root结点的位置
+        for (; rootIndex < inorder.length; rootIndex++) {
+            if (inorder[rootIndex] == rootValue) {
+                break;
+            }
+        }
+        //构建root结点
+        BinaryTreeNode root = new BinaryTreeNode();
+        root.value = rootValue;
+        //构建左子树
+        root.left = construct2(preorder, preStart + 1, preStart + (rootIndex - midStart),
+                inorder, midStart, rootIndex - 1);
+        //构建右子树
+        root.right = construct2(preorder, preStart + (rootIndex - midStart) + 1, preEnd,
+                inorder, rootIndex + 1, midEnd);
+        return root;
+    }
 }
