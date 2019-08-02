@@ -49,4 +49,38 @@ class QA29 {
         }
         return nums[left];
     }
+
+    public static int findMin2(int[] num) {
+        if (num == null || num.length == 0) {
+            return 0;
+        }
+        if (num.length == 1) {
+            return num[0];
+        }
+        if (num.length == 2) {
+            return Math.min(num[0], num[1]);
+        }
+        int left = 0;
+        int right = num.length - 1;
+        int mid = 0;
+        if (num[left] < num[right]) {
+            //说明没有被旋转过
+            return num[left];
+        }
+        while (left < right) {
+            mid = (left + right) / 2;
+            if (num[mid] > num[left] && num[mid] < num[right]) {
+                //说明是增序的
+                break;
+            }
+            if (num[mid] > num[right]) {
+                //mid比右边的大，说明最小的mid的右边
+                left = mid + 1;
+            } else {
+                //mid比右边小，说明最小的要不是mid，要不在mid的左边
+                right = mid;
+            }
+        }
+        return num[left];
+    }
 }
