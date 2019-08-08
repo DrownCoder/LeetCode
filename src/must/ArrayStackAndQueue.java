@@ -48,6 +48,42 @@ class ArrayStackAndQueue {
         }
     }
 
+    public static class ArrayStack2 {
+        private long[] a;
+        private int size;
+        private int top;
+
+        public ArrayStack2(int size) {
+            this.size = size;
+            a = new long[size];
+            top = -1;
+        }
+
+        public void push(long value) {
+            if (isFull()) {
+                return;
+            }
+            a[++top] = value;
+        }
+
+        public long pop() {
+            if (isEmpty()) {
+                return -1;
+            }
+            return a[top--];
+        }
+
+
+        public boolean isEmpty() {
+            return top == -1;
+        }
+
+        public boolean isFull() {
+            return top == size - 1;
+        }
+
+    }
+
     /**
      * 数组实现队列
      */
