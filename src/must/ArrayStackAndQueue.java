@@ -134,6 +134,51 @@ class ArrayStackAndQueue {
         }
     }
 
+    public static class ArrayQueue2 {
+        private long[] a;
+        private int fillSize;
+        private int size;
+        private int front, end;
+
+        public ArrayQueue2(int size) {
+            this.size = size;
+            a = new long[size];
+            front = 0;
+            end = -1;
+        }
+
+        public void put(int value) {
+            if (isFill()) {
+                return;
+            }
+            end = ++end % size;
+            a[end] = value;
+        }
+
+        public long remove() {
+            if (isEmpty()) {
+                return 0;
+            }
+            fillSize--;
+            return a[front++];
+        }
+
+        public long peek() {
+            if (isEmpty()) {
+                return 0;
+            }
+            return a[front];
+        }
+
+        public boolean isFill() {
+            return fillSize == size;
+        }
+
+        public boolean isEmpty() {
+            return fillSize != 0;
+        }
+    }
+
     /**
      * 数组实现优先级队列，从大到小排列
      */
