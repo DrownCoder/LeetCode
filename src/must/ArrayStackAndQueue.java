@@ -229,4 +229,51 @@ class ArrayStackAndQueue {
             return fillSize == 0;
         }
     }
+
+    public static class PriorityQueue2 {
+        private long a[];
+        private int size;
+        private int fillSize;
+
+        public PriorityQueue2(int size) {
+            this.size = size;
+            this.a = new long[size + 1];
+            fillSize = 0;
+        }
+
+        public void insert(long value) {
+            if (isFill()) {
+                return;
+            }
+            if (isEmpty()) {
+                a[fillSize++] = value;
+            } else {
+                int j = fillSize - 1;
+                for (; j >= 0; j--) {
+                    if (value > a[j]) {
+                        a[j + 1] = a[j];
+                    } else {
+                        break;
+                    }
+                }
+                a[j] = value;
+                fillSize++;
+            }
+        }
+
+        public long remove() {
+            if (isEmpty()) {
+                return -1;
+            }
+            return a[--fillSize];
+        }
+
+        public boolean isEmpty() {
+            return fillSize == 0;
+        }
+
+        public boolean isFill() {
+            return fillSize == size;
+        }
+    }
 }
