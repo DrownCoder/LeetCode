@@ -32,6 +32,34 @@ class QAList {
         return head.next;
     }
 
+    public ListNode mergeLists2(ListNode l1, ListNode l2) {
+        if (l1 == null) {
+            return l2;
+        }
+        if (l2 == null) {
+            return l1;
+        }
+        ListNode head = new ListNode(0);
+        ListNode cur = head;
+        while (l1 != null && l2 != null) {
+            if (l1.data > l2.data) {
+                cur.next = l2;
+                l2 = l2.next;
+                cur = cur.next;
+            }else{
+                cur.next = l1;
+                l1 = l1.next;
+                cur = cur.next;
+            }
+        }
+        if (l1 != null) {
+            cur.next = l1;
+        }else{
+            cur.next = l2;
+        }
+        return head.next;
+    }
+
     /**
      * 反转链表
      * 三个指针，保存前中后三个点
