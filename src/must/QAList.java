@@ -34,6 +34,7 @@ class QAList {
 
     public ListNode mergeLists2(ListNode l1, ListNode l2) {
         if (l1 == null) {
+
             return l2;
         }
         if (l2 == null) {
@@ -88,6 +89,21 @@ class QAList {
         }
         ListNode cur, pre = null, next;
         cur = head;
+        while (cur != null) {
+            next = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = next;
+        }
+        return pre;
+    }
+
+    public ListNode reverseList3(ListNode head) {
+        if (head == null) {
+            return null;
+        }
+        ListNode cur = head;
+        ListNode pre = null, next;
         while (cur != null) {
             next = cur.next;
             cur.next = pre;
