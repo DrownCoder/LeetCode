@@ -47,7 +47,7 @@ class QAList {
                 cur.next = l2;
                 l2 = l2.next;
                 cur = cur.next;
-            }else{
+            } else {
                 cur.next = l1;
                 l1 = l1.next;
                 cur = cur.next;
@@ -55,7 +55,7 @@ class QAList {
         }
         if (l1 != null) {
             cur.next = l1;
-        }else{
+        } else {
             cur.next = l2;
         }
         return head.next;
@@ -131,6 +131,25 @@ class QAList {
             if (fast != null) {
                 fast = fast.next;
             } else {
+                return false;
+            }
+        }
+        return false;
+    }
+
+    public boolean isCircle2(ListNode node) {
+        if (node == null) {
+            return false;
+        }
+        ListNode fast = node.next;
+        ListNode low = node;
+        while (fast != null && low != null) {
+            if (fast == low) {
+                return true;
+            }
+            fast = fast.next.next;
+            low = low.next;
+            if (fast == null) {
                 return false;
             }
         }
