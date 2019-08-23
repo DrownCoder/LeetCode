@@ -71,6 +71,54 @@ class QATree1 {
         }
     }
 
+    public void levelSearch2(TreeNode node) {
+        if (node == null) {
+            return;
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(node);
+        while (!queue.isEmpty()) {
+            TreeNode cur = queue.poll();
+            System.out.println(cur.value);
+            if (cur.left != null) {
+                queue.offer(cur.left);
+            }
+            if (cur.right != null) {
+                queue.offer(cur.right);
+            }
+        }
+    }
+
+    public void frontSearch2(TreeNode node) {
+        if (node == null) {
+            return;
+        }
+        //先根节点
+        System.out.println(node.value);
+        //在左
+        frontSearch2(node.left);
+        //右
+        frontSearch2(node.right);
+    }
+
+    public void midSearch2(TreeNode node) {
+        if (node == null) {
+            return;
+        }
+        midSearch2(node.left);
+        System.out.println(node.value);
+        midSearch2(node.right);
+    }
+
+    public void backSearch2(TreeNode node) {
+        if (node == null) {
+            return;
+        }
+        backSearch2(node.left);
+        backSearch2(node.right);
+        System.out.println(node.value);
+    }
+
 
     public static class TreeNode {
         public TreeNode left;
