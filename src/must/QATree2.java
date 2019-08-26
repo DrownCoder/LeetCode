@@ -33,10 +33,44 @@ class QATree2 {
 
     }
 
+    public void frontSearch2(TreeNode node) {
+        if (node == null) {
+            return;
+        }
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode cur = node;
+        while (cur != null || !stack.isEmpty()) {
+            while (cur != null) {
+                System.out.println(cur.value);
+                stack.push(cur);
+                cur = cur.left;
+            }
+            cur = stack.pop();
+            cur = cur.right;
+        }
+    }
+
     /**
      * 中序遍历
      */
     public void midSearch(TreeNode node) {
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode cur = node;
+        while (cur != null || !stack.isEmpty()) {
+            while (cur != null) {
+                stack.push(cur);
+                cur = cur.left;
+            }
+            cur = stack.pop();
+            System.out.println(cur.value);
+            cur = cur.right;
+        }
+    }
+
+    public void midSearch2(TreeNode node) {
+        if (node == null) {
+            return;
+        }
         Stack<TreeNode> stack = new Stack<>();
         TreeNode cur = node;
         while (cur != null || !stack.isEmpty()) {
@@ -75,6 +109,30 @@ class QATree2 {
                 cur = null;
             } else {
                 cur = cur.right;
+            }
+        }
+    }
+
+    public void backSearch2(TreeNode node) {
+        if (node == null) {
+            return;
+        }
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode cur = node;
+        TreeNode last = null;
+        while (cur != null || !stack.isEmpty()) {
+            while (cur != null) {
+                stack.push(cur);
+                cur = cur.left;
+            }
+            cur = stack.peek();
+            if (cur.right != null && cur.right != last) {
+                cur = cur.right;
+            } else {
+                System.out.println(cur);
+                stack.pop();
+                last = cur;
+                cur = null;
             }
         }
     }
