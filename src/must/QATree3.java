@@ -41,6 +41,36 @@ class QATree3 {
         return maxWidth;
     }
 
+    public static int getMaxWidth2(TreeNode node) {
+        if (node == null) {
+            return 0;
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(node);
+        int maxWidth = queue.size();
+        int len;
+        while (true) {
+            len = queue.size();
+            if (len == 0) {
+                break;
+            }
+            while (len > 0) {
+                TreeNode cur = queue.poll();
+                len--;
+                if (cur != null) {
+                    if (cur.left != null) {
+                        queue.offer(cur.left);
+                    }
+                    if (cur.right != null) {
+                        queue.offer(cur.right);
+                    }
+                }
+            }
+            maxWidth = Math.max(queue.size(), maxWidth);
+        }
+        return maxWidth;
+    }
+
 
     /**
      * 动态创建二叉查找树
@@ -64,7 +94,6 @@ class QATree3 {
             while (tempRoot != null) {
                 //当前值大于根值，往右边走
                 if (value > tempRoot.getValue()) {
-
                     //右边没有树根，那就直接插入
                     if (tempRoot.right == null) {
                         tempRoot.right = new TreeNode(value);
@@ -82,6 +111,32 @@ class QATree3 {
                     } else {
                         //如果左有树根，到左边的树根去
                         tempRoot = tempRoot.left;
+                    }
+                }
+            }
+        }
+    }
+
+    public static void createTree2(TreeNode node, int value) {
+        if (node.root == null) {
+            TreeNode root = new TreeNode(value);
+            node.setRoot(root);
+        } else {
+            TreeNode root = node.root;
+            while (root != null) {
+                if (value > root.getValue()) {
+                    if (root.right != null) {
+                        root = root.right;
+                    } else {
+                        root.right = new TreeNode(value);
+                        return;
+                    }
+                } else {
+                    if (root.left != null) {
+                        root = root.left;
+                    }else{
+                        root.left = new TreeNode(value);
+                        return;
                     }
                 }
             }
