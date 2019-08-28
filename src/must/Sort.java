@@ -72,12 +72,35 @@ class Sort {
         int length = arr.length;
         int temp;
         for (int i = 0; i < length - 1; i++) {
-            for (int j = 0; j < length - 1 - 1; j++) {
+            for (int j = 0; j < length - 1 - i; j++) {
                 if (arr[j] > arr[j + 1]) {
                     temp = arr[j];
                     arr[j] = arr[j + 1];
                     arr[j + 1] = temp;
                 }
+            }
+        }
+    }
+
+    public static void bubbleSort2(int[] arr) {
+        if (arr == null || arr.length <= 1) {
+            return;
+        }
+        int temp;
+        int length = arr.length;
+
+        for (int i = 0; i < length - 1; i++) {
+            boolean isSwap = false;
+            for (int j = 0; j < length - 1 - i; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                    isSwap = true;
+                }
+            }
+            if (!isSwap) {
+                return;
             }
         }
     }
@@ -90,6 +113,27 @@ class Sort {
      * 以此类推，直到所有元素均排序完毕。
      */
     public static void selectSort(int[] a) {
+        if (a == null || a.length == 0) {
+            return;
+        }
+        int min;
+        int minIndex = 0;
+        for (int i = 0; i < a.length; i++) {
+            min = a[i];
+            for (int j = i + 1; j < a.length; j++) {
+                if (a[j] < min) {
+                    min = a[j];
+                    minIndex = j;
+                }
+            }
+            if (min < a[i]) {
+                a[minIndex] = a[i];
+                a[i] = min;
+            }
+        }
+    }
+
+    public static void selectSort2(int[] a) {
         if (a == null || a.length == 0) {
             return;
         }
@@ -134,6 +178,23 @@ class Sort {
                     a[j - 1] = a[j];
                     a[j] = temp;
                 } else {
+                    break;
+                }
+            }
+        }
+    }
+
+    public static void insertSort2(int[] a) {
+        if (a == null) {
+            return;
+        }
+        for (int i = 1; i < a.length; i++) {
+            for (int j = i; j >= 0; j--) {
+                if (a[j] < a[j - 1]) {
+                    int temp = a[j];
+                    a[j] = a[j - 1];
+                    a[j - 1] = temp;
+                }else{
                     break;
                 }
             }
