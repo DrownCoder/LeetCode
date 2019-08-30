@@ -56,6 +56,40 @@ class Sort {
         return left;
     }
 
+    public static void quickSort2(int[] arr, int left, int right) {
+        if (arr == null || left > right || arr.length <= 1) {
+            return;
+        }
+        int mid = sort2(arr, left, right);
+        quickSort(arr, left, mid - 1);
+        quickSort(arr, mid + 1, right);
+    }
+
+    private static int sort2(int[] arr, int left, int right) {
+        //选最左边作为定点
+        int index = arr[left];
+        while (right > left) {
+            //先找右边比定点小的
+            while (arr[right] > index && left < right) {
+                --right;
+            }
+            if (left < right) {
+                arr[left] = arr[right];
+                //右边停住，等左边比index大来赋值
+                left++;
+            }
+            while (arr[left] < index && left < right) {
+                ++left;
+            }
+            if (left < right) {
+                arr[right] = arr[left];
+                right--;
+            }
+        }
+        arr[left] = index;
+        return left;
+    }
+
     //冒泡排序
 
     /**
@@ -194,7 +228,7 @@ class Sort {
                     int temp = a[j];
                     a[j] = a[j - 1];
                     a[j - 1] = temp;
-                }else{
+                } else {
                     break;
                 }
             }
@@ -214,6 +248,21 @@ class Sort {
                 int j = i;
                 while (j - gap >= 0 && a[j] < a[j - gap]) {
                     swap(a, j, j - gap);
+                    j -= gap;
+                }
+            }
+        }
+    }
+
+    public static void xierSort2(int[] a) {
+        if (a == null) {
+            return;
+        }
+        for (int gap = a.length / 2; gap > 0; gap /= 2) {
+            for (int i = gap; i < a.length; i++) {
+                int j = i;
+                while (j - gap >= 0 && a[j - gap] < a[j]) {
+                    swap(a, j - gap, j);
                     j -= gap;
                 }
             }
@@ -268,6 +317,45 @@ class Sort {
         t = 0;
         while (left <= right) {
             arr[left++] = temp[t++];
+        }
+    }
+
+    public static void mergeSort2(int[] a) {
+        if (a == null) {
+            return;
+        }
+        int[] temp = new int[a.length];
+
+        mergeSortItem(a, 0, a.length, temp);
+    }
+
+    public static void mergeSortItem(int[] a, int left, int right, int[] temp) {
+        int mid = (left + right) / 2;
+        mergeSortItem(a, left, mid, temp);
+        mergeSortItem(a, mid + 1, right, temp);
+        merge2(a, left, mid, right, temp);
+    }
+
+    private static void merge2(int[] a, int left, int mid, int right, int[] temp) {
+        int i = left;
+        int j = mid;
+        int t = 0;
+        while (i <= mid && j <= right) {
+            if (a[i] < a[j]) {
+                temp[t++] = a[i++];
+            } else {
+                temp[t++] = a[j++];
+            }
+        }
+        while (i <= mid) {
+            temp[t++] = a[i++];
+        }
+        while (j <= right) {
+            temp[t++] = a[j++];
+        }
+        t = 0;
+        while (left <= right) {
+            a[left++] = temp[t++];
         }
     }
 
