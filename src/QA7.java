@@ -36,8 +36,11 @@ class QA7 {
         }
         for (int i = index; i < ss.length(); i++) {
             if (isPalindrome(index, i)) {
+                //如果当前是回文串
                 ll.add(ss.substring(index, i + 1));
+                //判断后面的回文串
                 dfs(ll, i + 1);
+                //回溯一个
                 ll.remove(ll.size() - 1);
             }
         }

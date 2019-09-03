@@ -48,6 +48,24 @@ class QA16 {
         }
     }
 
+    public List<List<Integer>> subsets3(int[] nums) {
+        if (nums == null) {
+            return null;
+        }
+        List<List<Integer>> res = new ArrayList<>();
+        dfs2(res, new ArrayList<>(), nums, 0);
+        return res;
+    }
+
+    public void dfs2(List<List<Integer>> res, List<Integer> list, int[] nums, int index) {
+        res.add(new ArrayList<>(list));
+        for (int i = index; i < nums.length; i++) {
+            list.add(nums[i]);
+            dfs2(res, list, nums, i + 1);
+            list.remove(list.size() - 1);
+        }
+    }
+
     public static void main(String[] args) {
         QA16 qa16 = new QA16();
         qa16.subsets2(new int[]{

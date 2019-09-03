@@ -61,6 +61,17 @@ class QA18 {
         }
     }
 
+    public static void dfs2(int[] nums, List<List<Integer>> res, List<Integer> list, int index) {
+        if (index >= nums.length) {
+            res.add(new ArrayList<>(list));
+        }
+        for (int i = index; i < nums.length; i++) {
+            list.add(nums[i]);
+            dfs2(nums, res, list, i + 1);
+            list.remove(list.size() - 1);
+        }
+    }
+
     public static void main(String[] args) {
         int[] num = new int[]{
                 1, 2, 3
